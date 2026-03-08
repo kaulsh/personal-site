@@ -37,7 +37,7 @@ function App() {
           <LinkButton
             text="@kaulshashank"
             icon={ICONS.github}
-            link="https://www.github.com/kaulshashank"
+            link="https://www.github.com/kaulsh"
           />
           <LinkButton
             text="kaulshashank"
