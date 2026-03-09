@@ -35,7 +35,7 @@ function App() {
             link="https://bsky.app/profile/shashank.gg"
           />
           <LinkButton
-            text="@kaulshashank"
+            text="@kaulsh"
             icon={ICONS.github}
             link="https://www.github.com/kaulsh"
           />
