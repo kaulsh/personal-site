@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { getAllPosts } from '../lib/posts';
 
 const LINKS = [
-  { platform: 'Twitter', handle: '@kaulsh', url: 'https://www.twitter.com/kaulsh' },
-  { platform: 'Bluesky', handle: '@shashank.gg', url: 'https://bsky.app/profile/shashank.gg' },
   { platform: 'GitHub', handle: '@kaulsh', url: 'https://www.github.com/kaulsh' },
+  { platform: 'Twitter', handle: '@kaulsh', url: 'https://www.twitter.com/kaulsh' },
   { platform: 'LinkedIn', handle: 'kaulshashank', url: 'https://www.linkedin.com/in/kaulshashank' },
+  { platform: 'Bluesky', handle: '@shashank.gg', url: 'https://bsky.app/profile/shashank.gg' },
 ];
 
 function formatDate(date: string | Date) {
@@ -20,15 +20,15 @@ export default function Home() {
     <div className="page">
       <Helmet>
         <title>Shashank Kaul</title>
-        <meta name="description" content="Personal site of Shashank Kaul — distributed systems, AI products, and occasional writing." />
+        <meta name="description" content="Personal site of Shashank Kaul" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.shashank.gg" />
         <meta property="og:title" content="Shashank Kaul" />
-        <meta property="og:description" content="Personal site of Shashank Kaul — distributed systems, AI products, and occasional writing." />
+        <meta property="og:description" content="Personal site of Shashank Kaul" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@kaulsh" />
         <meta name="twitter:title" content="Shashank Kaul" />
-        <meta name="twitter:description" content="Personal site of Shashank Kaul — distributed systems, AI products, and occasional writing." />
+        <meta name="twitter:description" content="Personal site of Shashank Kaul" />
         <link rel="canonical" href="https://www.shashank.gg" />
       </Helmet>
       <header className="site-header">
@@ -38,12 +38,14 @@ export default function Home() {
 
       <section className="bio">
         <p>I build distributed systems and AI-driven products.</p>
-        <p>Currently co-founding <a href="https://usescore.ai" target="_blank" rel="noopener noreferrer">Score AI</a>; automating quality assurance for customer experience teams using agentic AI.</p>
-        <p>7+ years across backend infrastructure, database scaling, and AI engineering. I have worked with TypeScript, Python, PostgreSQL, MongoDB, AWS, and more.</p>
+        <p>I'm currently co-founding <a href="https://usescore.ai" target="_blank" rel="noopener noreferrer">Score</a>, where we automate quality assurance for customer experience teams using agentic AI.</p>
+        <p>I have 7+ years of experience across backend infrastructure, database scaling, and AI engineering. I have worked with TypeScript, Python, PostgreSQL, MongoDB, AWS, and more.</p>
+        <p>I also play Old School RuneScape, the guitar, and enjoy learning new recipes in the kitchen.</p>
+        <p>I live in Chennai, India.</p>
       </section>
 
-      <a href="/Resume - Shashank Kaul.pdf" download className="resume-link">
-        📝 Download résumé
+      <a href="/Resume - Shashank Kaul.pdf" className="resume-link">
+        📝 Download my résumé
       </a>
 
       {posts.length > 0 && (
@@ -63,7 +65,7 @@ export default function Home() {
       )}
 
       <section className="section">
-        <h2 className="section-title">Elsewhere</h2>
+        <h2 className="section-title">Elsewhere on the internet</h2>
         <ul className="link-list">
           {LINKS.map((link) => (
             <li key={link.platform}>

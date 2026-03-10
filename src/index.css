@@ -7,7 +7,6 @@
 :root {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  background-color: #232946;
   color: var(--white);
 
   font-synthesis: none;
@@ -16,19 +15,21 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --bg: #232946;
   --white: #fffffe;
   --text: #b9bacb;
   --black: #0f0e17;
-  --accent: #ff8906;
-  --secondary: #f25f4c;
-  --tertiary: #e53170;
+  --accent: #e53170;
   --border: rgba(167, 169, 190, 0.12);
 }
 
-html,
+html {
+  min-height: 100%;
+  background: linear-gradient(180deg, #1f2540 25%, #262944 100%);
+  background-attachment: fixed;
+}
+
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -89,7 +90,7 @@ body {
 }
 
 .bio a:hover {
-  color: var(--tertiary);
+  color: var(--accent);
 }
 
 /* ── Resume link ────────────────────────────────────────── */
@@ -98,15 +99,18 @@ body {
   display: inline-block;
   margin-bottom: 3rem;
   font-size: 0.875rem;
-  color: var(--text);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 1px;
   transition: color 150ms ease;
 }
 
-.resume-link:hover {
-  color: var(--white);
+a {
+  color: var(--text);
+}
+
+a:hover {
+  color: var(--accent);
 }
 
 /* ── Sections ───────────────────────────────────────────── */
@@ -152,11 +156,11 @@ ul {
 }
 
 .post-link:hover {
-  color: var(--tertiary);
+  color: var(--accent);
 }
 
 .post-link:hover .post-date {
-  color: var(--tertiary);
+  color: var(--accent);
 }
 
 .post-date {
@@ -174,14 +178,10 @@ ul {
   gap: 1.25rem;
   padding: 0.45rem 0;
   text-decoration: none;
-  color: var(--white);
   font-size: 0.9rem;
   transition: color 150ms ease;
 }
 
-.social-link:hover {
-  color: var(--tertiary);
-}
 
 .social-platform {
   min-width: 80px;
@@ -190,13 +190,13 @@ ul {
 }
 
 .social-link:hover .social-platform {
-  color: var(--tertiary);
+  color: var(--accent);
 }
 
 /* ── Footer ─────────────────────────────────────────────── */
 
 .site-footer {
-  margin-top: 4rem;
+  margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
 }
@@ -267,14 +267,14 @@ ul {
 .prose h4 { font-size: 1rem; }
 
 .prose a {
-  color: var(--tertiary);
+  color: var(--white);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 150ms ease;
 }
 
 .prose a:hover {
-  color: var(--secondary);
+  color: var(--accent);
 }
 
 .prose code {
@@ -303,7 +303,8 @@ ul {
 }
 
 .prose blockquote {
-  border-left: 3px solid var(--tertiary);
+  border-left: 3px solid var(--accent);
+  border-radius: 5px;
   padding-left: 1.25rem;
   margin-left: 0;
   margin-bottom: 1.25rem;

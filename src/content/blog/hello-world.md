@@ -2,7 +2,7 @@
 title: "Hello, World"
 date: 2026-03-10
 description: "A kitchen-sink post to preview how various elements render."
-published: true
+published: false
 ---
 
 This is the first post on my blog — mostly a playground to see how everything looks before I write something real.
