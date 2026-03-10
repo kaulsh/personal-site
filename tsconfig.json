@@ -6,9 +6,8 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "types": [
-			"vite/client",
-			"@emotion/react/types/css-prop"
-		],
+      "vite/client"
+    ],
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
