@@ -38,10 +38,10 @@ export default function Home() {
 
       <section className="bio">
         <p>I build distributed systems and AI-driven products.</p>
-        <p>I'm currently co-founding <a href="https://usescore.ai" target="_blank" rel="noopener noreferrer">Score</a>, where we automate quality assurance for customer experience teams using agentic AI.</p>
-        <p>I have 7+ years of experience across backend infrastructure, database scaling, and AI engineering. I have worked with TypeScript, Python, PostgreSQL, MongoDB, AWS, and more.</p>
-        <p>I also play Old School RuneScape, the guitar, and enjoy learning new recipes in the kitchen.</p>
-        <p>I live in Chennai, India.</p>
+        <p>Currently, I'm co-founding <a href="https://usescore.ai" target="_blank" rel="noopener noreferrer">Score</a>, where we're building AI agents to automate quality assurance for customer experience teams.</p>
+        <p>I have over 7 years of experience in backend infrastructure, database scaling, and AI engineering, I work primarily with TypeScript, Python, PostgreSQL, MongoDB, and AWS.</p>
+        <p>Beyond coding, I play the guitar, enjoy experimenting with new recipes in the kitchen, and occasionally find myself back in Old School RuneScape.</p>
+        <p>I work remotely from Chennai, India.</p>
       </section>
 
       <a href="/Resume - Shashank Kaul.pdf" className="resume-link">
