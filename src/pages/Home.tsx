@@ -54,7 +54,7 @@ export default function Home() {
           <ul className="post-list">
             {posts.map((post) => (
               <li key={post.slug}>
-                <Link to={`/blog/${post.slug}`} className="post-link">
+                <Link to={`/essay/${post.slug}`} className="post-link">
                   <span className="post-title">{post.frontmatter.title}</span>
                   <span className="post-date">{formatDate(post.frontmatter.date)}</span>
                 </Link>

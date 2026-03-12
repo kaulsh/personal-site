@@ -24,7 +24,7 @@ export default function BlogPost() {
   }
 
   const { title, description, date } = post.frontmatter;
-  const postUrl = `${SITE_URL}/blog/${slug}`;
+  const postUrl = `${SITE_URL}/essay/${slug}`;
 
   return (
     <div className="page">

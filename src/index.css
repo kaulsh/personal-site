@@ -9,14 +9,14 @@
   font-size: 16px;
   color: var(--white);
 
-  font-synthesis: none;
+  font-synthesis: weight;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
   --white: #fffffe;
-  --text: #b9bacb;
+  --text: #d5d6e0;
   --black: #0f0e17;
   --accent: #e53170;
   --border: rgba(167, 169, 190, 0.12);
@@ -311,8 +311,14 @@ ul {
   color: var(--text);
 }
 
-.prose ul,
+.prose ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
 .prose ol {
+  list-style: decimal;
   padding-left: 1.5rem;
   margin-bottom: 1.25rem;
 }
