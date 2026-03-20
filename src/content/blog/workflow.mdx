@@ -1,0 +1,123 @@
+---
+title: "Shipping at 200k lines, with agents"
+date: 2026-03-20
+description: ""
+published: true
+---
+import { CursorUsageCharts } from '../../components/blog/CursorUsageCharts';
+import { FileViewer } from '../../components/blog/FileViewer';
+import { BlogImage } from '../../components/blog/BlogImage';
+
+At Score, we've been a 2-man team for a long time. Interns came and went, but we kept increasing our own efficiency. The codebase sits at ~200k lines — a number that can be debated endlessly about how it may or may not be absurd for a single person to manage — but I'm confident that I've done a decent job of compartmentalizing modules and keeping a healthy mental map.
+
+Now, I'm foreseeing a world where I'm *still* single handedly executing our product roadmap but the same confidence would have wavered.
+
+Last year, I had almost no faith in letting Claude touch more than a function or two at a time. `Tab` and `Ctrl+K` gave me the advertised 10-20% productivity boost and I was happy. The few times I opened Chat, I'd have a model write a draft HTTP route, util or function, which I'd end up refactoring.
+
+Cut to March, I have barely touched `Tab` and `Ctrl+K` all month. I spend most of my time in Chat.
+
+<CursorUsageCharts />
+
+At this point I've realized the only thing stopping me from shipping faster, is me. No this is not an essay about *"autonomous agentic engineering"* where we let multiple agents go off on a rampage on our codebase. I want to focus on how I've improved my own workflow to ship faster — and how it's become evident that if I continue down this path, my confidence in the codebase will start to fade.
+
+## How I work
+
+It's generally considered difficult for a 2-person co-founder team to complicate their workflow. In most cases, such teams are usually feature request factories that have a very thin backlog for their ICPs along with *a lot* of feature requests.
+
+Tickets on Linear start as a line or two when they are created. After a meeting with [Varun](https://www.linkedin.com/in/4varun20/), they become bullet points: UI changes, changes and additions to what we're storing, AI prompt changes, new tools, new notifications, analytics events. Those go through my "codebase-in-a-brain" filter and come out as backend/frontend change lists. This can take me anywhere between 5 to 60 minutes with the codebase opened beside me. 
+
+These bullet points are usually something like:
+
+* "New API route (`POST /cats/meow`) in `cats.router.ts` should expect A, B, C and do X, Y, Z after which it publishes message L and M"
+* "New button placed in toolbar above the table in `routes/cats.tsx` should call `POST /cats/meow`".
+* "On consuming message L, do D and E. Remember that F needs to be done in case 1-5"
+* ... you get the gist.
+
+This in no way is an exhaustive list of work to be done, it's more like a mechanism for me to be sure that I'm not missing something crucial that will block the entire ticket from being built.
+
+That list goes into Cursor's Chat in Plan mode with Opus (usually low/medium reasoning — sometimes high for larger branches). I ask it to dig deeper and find anything I'm missing. After 1-2 iterations I'm happy with the plan, then I hand it to models based on how much I trust them.
+
+* **Sonnet**: I trust this model.
+* **Composer**: I trust this model more than I should.
+* **Kimi**: I don't trust this model.
+
+*(simple, ey?)*
+
+## Trust in execution, not benchmarks
+
+For me, trust earned is the only deciding factor. Benchmarks go out the window. High-trust models cost more to complete work but they've earned that confidence through practice, like you would for any employee.
+
+You might be wondering, "Why use models you don't trust?".
+
+Kimi sits in an intentional tier alongside GPT-5.4 mini and Gemini 3 Flash for my low-trust tasks. These tasks include: documentation, simple refactors, reorganizing modules, scripts I need quickly but would rarely review if they worked as expected.
+
+The reason they sit in this tier isn't performance on benchmarks — it's a specific failure mode I've seen repeatedly. Send any of these models something complex and they'll produce code that *looks* done. Functions stubbed with comments of a question that should've been asked during planning, edge cases ignored, the hard part deferred. They don't stop and ask questions. But they are highly cost effective and allow me to make the most of my Cursor Pro+ subscription for the larger tasks.
+
+High-trust models like Sonnet and Composer will push back (Sonnet, more so than Composer). They'll surface something Opus and I missed in the spec or flag an ambiguity before touching a file. That behaviour, more than output quality, is what earns trust.
+
+## The bottlenecks
+
+The amount of time I pause the automation to ensure quality is the bottleneck. I spent some time reviewing my old Cursor chats for gaps where I was doing something manually and found three general areas where the workflow could improve:
+
+1. writing technical notes from my meeting notes with Varun
+2. reviewing and tweaking the generated code
+3. parallelizing many tickets
+
+### Technical notes
+
+I have become a firm believer that scanning a codebase for relevant code has been *mostly* solved by agentic IDEs. I have come to trust a model's ability to find files based on my queries more and more over time. This might just be my assumption of working in a relatively smaller codebase, but it works well for me.
+
+Instead of thinking about code flow and writing a list of files and changes to be done, I trust the model's capabilities paired with a skill that helps prime the plan with relevant files, producing a better first draft.
+
+<FileViewer src="/blog-assets/workflow-skill-plan-linear-ticket.md" label="Skill" filename="plan-linear-ticket/SKILL.md" />
+
+This skill is paired with the Linear MCP (Now available via Cursor's Marketplace).
+
+### Code review
+
+Monotonous review leads to bugs slipping through. No checklist fixes how a developer feels on their 3rd branch of the day. And with agentic IDEs, reaching your 3rd branch a day isn't far fetched.
+
+I worked with Sonnet and landed on a 4-pass strategy to get a reasoning model to think through a git diff properly.
+
+<BlogImage
+  src="/blog-assets/workflow-code-review.png"
+  alt="Flowchart of a 4-step code review process on a dark background. Step 0: Gather context — run git diff, check file tree, fetch Linear ticket. Step 1: Multi-pass review — four sequential passes: What & Why (goal and layer check), Logic Flow (trace the happy path), Edge Cases (null, timeout, race conditions), Housekeeping (naming and readability). Step 2: Look for omissions — error handling, logs and telemetry, tests, docs, and hidden dependencies from deletions. Step 3: Final report — five sections: Executive Summary, Critical Logic & Edge Cases, Missing List, Readability & Nits, and Kudos. Ends with a verdict of Approve, Comment Only, or Request Changes."
+/>
+
+The only next option was to translate this to a skill.
+
+<FileViewer src="/blog-assets/workflow-skill-code-review.md" label="Skill" filename="code-review/SKILL.md" />
+
+### Parallelisation
+
+Although not completely solved, I'm able to kick off many more agents than I could before using the two skills we've just discussed.
+
+The mental model here is simple: agents are always working, I am always reviewing.
+
+When I kick off `/plan-linear-ticket SCORE-001`, I don't wait for it to finish. By the time it's done planning, I've already run `/plan-linear-ticket SCORE-002`. Ticket 1's agent is mid-build while ticket 2 is still in plan mode. I'm reviewing ticket 1's diff while ticket 3 is being planned. The pipeline is always full.
+
+Cursor makes this surprisingly manageable. I don't open multiple windows. Different chat tabs hold each branch's conversation, and the Git tab lets me pull up the diff of any worktree without switching context. 
+
+The rule I follow: wherever I've most recently switched, that's where my focus stays. I don't let a completed step on branch B pull me away from reviewing branch A mid-thought.
+
+Conflicts are expected and not a big deal. I merge one branch at a time regardless. The only pre-condition I enforce is that if a ticket touches a shared library, that ticket goes first and gets merged before anything depending on it starts.
+
+Counterintuitively, larger tickets are easier to parallelize because the agent takes longer to implement, which gives me more runway to review and plan everything else. Smaller tickets are the pressure test; they finish fast and demand attention sooner.
+
+---
+
+The throughput difference is hard to argue with. Branches that used to take 3 days are usually taken to completion on the day they are started.
+
+I'm no longer thinking: "I'll try to finish these 3 routes on the backend before dinner so I can finish half of the frontend by bedtime."
+
+I'm thinking: "I have 1 plan and 1 code review left to read. I can read them and let the agent build the plan while I have dinner."
+
+Even so, I'm not entirely comfortable yet.
+
+The thing I keep coming back to is the mental model. Right now I can look at any part of my codebase and have a rough idea of what's in there, why it was built that way, and what will break if I touch it. That knowledge is what makes me a good reviewer of the code the agents write. The day that degrades is the day the whole system gets shakier.
+
+My mental model is the sum of every tradeoff I've consciously made or reviewed. Not file locations. The stuff that isn't searchable: why a certain abstraction exists, what a module was/was not designed to do, which parts are load-bearing technical debt. The signal I'm watching for is the first time I can't answer Varun, with confidence, whether something can be introduced with ease or would require a refactoring.
+
+I don't think the answer is to write more code by hand. I think it's the opposite. The review discipline has to get stricter as the codebase grows, not looser. The skills aren't just efficiency tools. They're how I stay in the loop at all.
+
+Will the mental model break because I'm reading and not writing the code? Will these mechanisms hold at 500k lines, 1 million lines? I genuinely don't know. Ask me again in six months.

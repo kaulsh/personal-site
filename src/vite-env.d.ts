@@ -1,0 +1,8 @@
+/// <reference types="vite/client" />
+
+declare module '*.mdx' {
+  import type { FC } from 'react';
+  const MDXContent: FC;
+  export default MDXContent;
+  export const frontmatter: Record<string, unknown>;
+}

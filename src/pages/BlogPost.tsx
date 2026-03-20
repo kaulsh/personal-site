@@ -1,8 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
+import { MDXProvider } from '@mdx-js/react';
 import { getPost } from '../lib/posts';
 
 const SITE_URL = 'https://www.shashank.gg';
@@ -24,6 +22,7 @@ export default function BlogPost() {
   }
 
   const { title, description, date } = post.frontmatter;
+  const { Content } = post;
   const postUrl = `${SITE_URL}/essay/${slug}`;
 
   return (
@@ -59,7 +58,9 @@ export default function BlogPost() {
           <time className="post-time">{formatDate(post.frontmatter.date)}</time>
         </header>
         <div className="prose">
-          <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{post.content}</Markdown>
+          <MDXProvider>
+            <Content />
+          </MDXProvider>
         </div>
       </article>
     </div>
