@@ -1,14 +1,15 @@
 ---
 title: "Shipping at 200k lines, with agents"
-date: 2026-03-20
+date: 2026-03-23
 description: ""
 published: true
 ---
 import { CursorUsageCharts } from '../../components/blog/CursorUsageCharts';
 import { FileViewer } from '../../components/blog/FileViewer';
 import { BlogImage } from '../../components/blog/BlogImage';
+import { FnRef, FnDef, FootnoteList } from '../../components/blog/Footnote';
 
-At Score, we've been a 2-man team for a long time. Interns came and went, but we kept increasing our own efficiency. The codebase sits at ~200k lines — a number that can be debated endlessly about how it may or may not be absurd for a single person to manage — but I'm confident that I've done a decent job of compartmentalizing modules and keeping a healthy mental map.
+At Score, we've been a 2-man team for a long time. Interns came and went, but we kept increasing our own efficiency. The codebase sits at ~200k lines, a number that can be debated endlessly about how it may or may not be absurd for a single person to manage, but I'm confident that I've done a decent job of compartmentalizing modules and keeping a healthy mental map.
 
 Now, I'm foreseeing a world where I'm *still* single handedly executing our product roadmap but the same confidence would have wavered.
 
@@ -35,25 +36,15 @@ These bullet points are usually something like:
 
 This in no way is an exhaustive list of work to be done, it's more like a mechanism for me to be sure that I'm not missing something crucial that will block the entire ticket from being built.
 
-That list goes into Cursor's Chat in Plan mode with Opus (usually low/medium reasoning — sometimes high for larger branches). I ask it to dig deeper and find anything I'm missing. After 1-2 iterations I'm happy with the plan, then I hand it to models based on how much I trust them.
+That list goes into Cursor's Chat in Plan mode with Opus (usually low/medium reasoning — sometimes high for larger branches). I ask it to dig deeper and find anythOn model trust: benchmarks don't factor into this at all for me — trust is earned through practice, the same way you'd extend it to any collaborator/employee. Kimi, GPT-4o mini, and Gemini Flash sit in a low-trust tier for tasks like documentation, simple refactors, and scripts I need quickly. The reason isn't benchmark performance — it's a specific failure mode. Send them something complex and they produce code that *looks* done: functions stubbed with comments instead of questions, edge cases ignored, the hard part deferred. They won't stop and ask. Sonnet and Composer will. Sonnet especially will push back, surface something Opus and I missed in the spec, or flag an ambiguity before touching a file. That behaviour, more than output quality, is what earns trust.ing I'm missing. After 1-2 iterations I'm happy with the plan, then I hand it to models based on how much I trust them.
 
 * **Sonnet**: I trust this model.
 * **Composer**: I trust this model more than I should.
 * **Kimi**: I don't trust this model.
 
-*(simple, ey?)*
+(simple, ey?) <FnRef id="trust-in-execution" />
 
-## Trust in execution, not benchmarks
-
-For me, trust earned is the only deciding factor. Benchmarks go out the window. High-trust models cost more to complete work but they've earned that confidence through practice, like you would for any employee.
-
-You might be wondering, "Why use models you don't trust?".
-
-Kimi sits in an intentional tier alongside GPT-5.4 mini and Gemini 3 Flash for my low-trust tasks. These tasks include: documentation, simple refactors, reorganizing modules, scripts I need quickly but would rarely review if they worked as expected.
-
-The reason they sit in this tier isn't performance on benchmarks — it's a specific failure mode I've seen repeatedly. Send any of these models something complex and they'll produce code that *looks* done. Functions stubbed with comments of a question that should've been asked during planning, edge cases ignored, the hard part deferred. They don't stop and ask questions. But they are highly cost effective and allow me to make the most of my Cursor Pro+ subscription for the larger tasks.
-
-High-trust models like Sonnet and Composer will push back (Sonnet, more so than Composer). They'll surface something Opus and I missed in the spec or flag an ambiguity before touching a file. That behaviour, more than output quality, is what earns trust.
+Model choice is one input into the workflow. The bigger variables are *when* you hand off and *how much attention* you give the output.
 
 ## The bottlenecks
 
@@ -104,7 +95,7 @@ Conflicts are expected and not a big deal. I merge one branch at a time regardle
 
 Counterintuitively, larger tickets are easier to parallelize because the agent takes longer to implement, which gives me more runway to review and plan everything else. Smaller tickets are the pressure test; they finish fast and demand attention sooner.
 
----
+## Final thoughts
 
 The throughput difference is hard to argue with. Branches that used to take 3 days are usually taken to completion on the day they are started.
 
@@ -121,3 +112,7 @@ My mental model is the sum of every tradeoff I've consciously made or reviewed. 
 I don't think the answer is to write more code by hand. I think it's the opposite. The review discipline has to get stricter as the codebase grows, not looser. The skills aren't just efficiency tools. They're how I stay in the loop at all.
 
 Will the mental model break because I'm reading and not writing the code? Will these mechanisms hold at 500k lines, 1 million lines? I genuinely don't know. Ask me again in six months.
+
+<FootnoteList>
+  <FnDef id="trust-in-execution">On model trust: benchmarks don't factor into this at all for me. Trust is earned through practice, the same way you'd extend it to any collaborator or employee. Kimi, GPT-4o mini, and Gemini Flash sit in a low-trust tier for tasks like documentation, simple refactors, and scripts I need quickly. The reason isn't benchmark performance. It's a specific failure mode. Send them something complex and they produce code that looks done: functions stubbed with comments instead of questions, edge cases ignored, the hard part deferred. They won't stop and ask. Sonnet and Composer will. Sonnet especially will push back, surface something Opus and I missed in the spec, or flag an ambiguity before touching a file. That behaviour, more than output quality, is what earns trust.</FnDef>
+</FootnoteList>

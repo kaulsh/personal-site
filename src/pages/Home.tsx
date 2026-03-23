@@ -10,7 +10,7 @@ const LINKS = [
 ];
 
 function formatDate(date: string | Date) {
-  return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' });
 }
 
 export default function Home() {
