@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -93,12 +95,25 @@ body {
   color: var(--accent);
 }
 
-/* ── Resume link ────────────────────────────────────────── */
+/* ── Resume links ───────────────────────────────────────── */
 
-.resume-link {
-  display: inline-block;
+.resume-links {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
   margin-bottom: 3rem;
   font-size: 0.875rem;
+}
+
+.resume-label {
+  margin-right: 0.25rem;
+}
+
+.resume-sep {
+  opacity: 0.5;
+}
+
+.resume-link {
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 1px;
@@ -261,10 +276,21 @@ ul {
   font-weight: 600;
 }
 
-.prose h1 { font-size: 1.5rem; }
-.prose h2 { font-size: 1.25rem; }
-.prose h3 { font-size: 1.1rem; }
-.prose h4 { font-size: 1rem; }
+.prose h1 {
+  font-size: 1.5rem;
+}
+
+.prose h2 {
+  font-size: 1.25rem;
+}
+
+.prose h3 {
+  font-size: 1.1rem;
+}
+
+.prose h4 {
+  font-size: 1rem;
+}
 
 .prose a {
   color: var(--white);

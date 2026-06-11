@@ -1,16 +1,36 @@
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { getAllPosts } from '../lib/posts';
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { getAllPosts } from "../lib/posts";
 
 const LINKS = [
-  { platform: 'GitHub', handle: '@kaulsh', url: 'https://www.github.com/kaulsh' },
-  { platform: 'Twitter', handle: '@kaulsh', url: 'https://www.twitter.com/kaulsh' },
-  { platform: 'LinkedIn', handle: 'kaulshashank', url: 'https://www.linkedin.com/in/kaulshashank' },
-  { platform: 'Bluesky', handle: '@shashank.gg', url: 'https://bsky.app/profile/shashank.gg' },
+  {
+    platform: "GitHub",
+    handle: "@kaulsh",
+    url: "https://www.github.com/kaulsh",
+  },
+  {
+    platform: "Twitter",
+    handle: "@kaulsh",
+    url: "https://www.twitter.com/kaulsh",
+  },
+  {
+    platform: "LinkedIn",
+    handle: "kaulshashank",
+    url: "https://www.linkedin.com/in/kaulshashank",
+  },
+  {
+    platform: "Bluesky",
+    handle: "@shashank.gg",
+    url: "https://bsky.app/profile/shashank.gg",
+  },
 ];
 
 function formatDate(date: string | Date) {
-  return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric' });
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+    day: "numeric",
+  });
 }
 
 export default function Home() {
@@ -24,11 +44,17 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.shashank.gg" />
         <meta property="og:title" content="Shashank Kaul" />
-        <meta property="og:description" content="Personal site of Shashank Kaul" />
+        <meta
+          property="og:description"
+          content="Personal site of Shashank Kaul"
+        />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@kaulsh" />
         <meta name="twitter:title" content="Shashank Kaul" />
-        <meta name="twitter:description" content="Personal site of Shashank Kaul" />
+        <meta
+          name="twitter:description"
+          content="Personal site of Shashank Kaul"
+        />
         <link rel="canonical" href="https://www.shashank.gg" />
       </Helmet>
       <header className="site-header">
@@ -38,15 +64,41 @@ export default function Home() {
 
       <section className="bio">
         <p>I build distributed systems and AI-driven products.</p>
-        <p>Currently, I'm co-founding <a href="https://usescore.ai" target="_blank" rel="noopener noreferrer">Score</a>, where we're building AI agents to automate quality assurance for customer experience teams.</p>
-        <p>I have over 7 years of experience in backend infrastructure, database scaling, and AI engineering, I work primarily with TypeScript, Python, PostgreSQL, MongoDB, and AWS.</p>
-        <p>Beyond coding, I play the guitar, enjoy experimenting with new recipes in the kitchen, and occasionally find myself back in Old School RuneScape.</p>
+        <p>
+          Currently, I'm co-founding{" "}
+          <a
+            href="https://usescore.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Score
+          </a>
+          , where we're building AI agents to automate quality assurance for
+          customer experience teams.
+        </p>
+        <p>
+          I have 8 years of experience in backend infrastructure, database
+          scaling, and AI engineering, I work primarily with TypeScript, Python,
+          PostgreSQL, MongoDB, and AWS.
+        </p>
+        <p>
+          Beyond coding, I play the guitar, enjoy experimenting with new recipes
+          in the kitchen, and occasionally find myself back in Old School
+          RuneScape.
+        </p>
         <p>I work remotely from Chennai, India.</p>
       </section>
 
-      <a href="/Resume - Shashank Kaul.pdf" className="resume-link">
-        📝 Download my résumé
-      </a>
+      <p className="resume-links">
+        <span className="resume-label">📝 Résumé</span>
+        <a href="/Resume - Shashank Kaul.pdf" className="resume-link">
+          PDF
+        </a>
+        <span className="resume-sep">·</span>
+        <a href="/Resume - Shashank Kaul.md" className="resume-link">
+          Markdown
+        </a>
+      </p>
 
       {posts.length > 0 && (
         <section className="section">
@@ -56,7 +108,9 @@ export default function Home() {
               <li key={post.slug}>
                 <Link to={`/essay/${post.slug}`} className="post-link">
                   <span className="post-title">{post.frontmatter.title}</span>
-                  <span className="post-date">{formatDate(post.frontmatter.date)}</span>
+                  <span className="post-date">
+                    {formatDate(post.frontmatter.date)}
+                  </span>
                 </Link>
               </li>
             ))}
@@ -84,9 +138,7 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
-        <p>
-          Handcrafted with premium procrastination.
-        </p>
+        <p>Handcrafted with premium procrastination.</p>
       </footer>
     </div>
   );
