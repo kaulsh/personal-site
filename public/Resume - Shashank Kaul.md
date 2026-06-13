@@ -28,6 +28,8 @@ AI agents for quality assurance in customer support teams, enabling more in-dept
 - Engineered a multi-source context pipeline for PDFs, Google Docs/Slides, and Logistics Tracking APIs to ground our custom AI agent in high quality context, reaching ~90% alignment with human QA audits.t
 - Built a real-time voice agent for coaching using an STT→LLM→TTS pipeline (Deepgram, Gemini, ElevenLabs) that simulates customer phone calls, cutting onboarding ramp time and enabling async coaching without requiring supervisor availability.
 
+Stack: TypeScript, Express.js, PostgreSQL, RabbitMQ, LangGraph, Langfuse, Live Kit, AWS, GCP
+
 ### Senior Backend Engineer; Contracts, Invoicing & Payroll Processing
 
 *Aug 2022 — Jul 2023* · [Panther](https://wellfound.com/company/panther-global) (US, Remote)
@@ -39,6 +41,8 @@ Global payments and compliance company, helping companies run payroll in over 15
 - Designed our RabbitMQ-based job batching system and implemented bulk exports of contracts and invoices using AWS S3 multipart uploads for saving hundreds of PDFs as zip archivesf
 - Integrated third-party AI-based fraud detection into the payments stack, proactively Èagging and mitigating wire fraud and reducing fraudulent transaction exposuref
 - Shipped features and bug "xes in invoice cycle scheduling and employment contract generation.
+
+Stack: TypeScript, Nest.js (Microservices), GraphQL, MySQL, RabbitMQ, AWS, Kubernetes on EKS
 
 ### Senior Software Engineer; Platform & Infrastructure
 
@@ -53,12 +57,16 @@ Sales engagement platform automating and scaling multichannel outreach for small
 - Designed in-house database clustering to partition customer data by volume and geography, improving stability by distributing 2 TB across two regional databasesf
 Spearheaded our AngularJS to React migration, setting the basis for our component library and routing that the rest of the team used to transition screens to React.
 
+Stack: JavaScript, TypeScript, React, Express.js, MongoDB, RabbitMQ, AWS, Heroku
+
 ### Founding Software Engineer
 *Jan 2018 — Dec 2020* · [Klenty](https://www.klenty.com) (Chennai, On-site)
 
 - Core maintainer of our graph-based outreach campaign scheduler, using a 2D canvas library (Konva) on the front end and a custom-built graph node execution worker on the back end, that allowed customers to build complex conditional outreach sequencesf
 - Built self-serve billing from scratch (using Stripe) handling both base and custom enterprise plans, enabling the sales team to close deals without engineering involvement for plan con"gurationf
 - Built and owned our email reply tracking service scanning 10,000+ email inboxes every 15 minutes; enabling our customers to set up complex business workÈows in their email campaigns with relation to replies, auto-replies and bounces.
+
+Stack: JavaScript, AngularJS, Express.js, MongoDB, RabbitMQ, Heroku
 
 ## PROJECTS
 
