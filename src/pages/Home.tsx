@@ -91,11 +91,11 @@ export default function Home() {
 
       <p className="resume-links">
         <span className="resume-label">📝 Résumé</span>
-        <a href="/Resume - Shashank Kaul.pdf" className="resume-link">
+        <a href="/resume_shashank_kaul.pdf" className="resume-link">
           PDF
         </a>
         <span className="resume-sep">·</span>
-        <a href="/Resume - Shashank Kaul.md" className="resume-link">
+        <a href="/resume_shashank_kaul.md" className="resume-link">
           Markdown
         </a>
       </p>
