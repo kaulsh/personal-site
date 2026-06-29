@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { ExternalLinkIcon, GitHubIcon } from "../components/Icons";
 import { getAllPosts } from "../lib/posts";
+import { tools } from "../lib/tools";
 
 const LINKS = [
   {
@@ -117,6 +119,44 @@ export default function Home() {
           </ul>
         </section>
       )}
+
+      <section className="section">
+        <h2 className="section-title">Tools</h2>
+        <div className="tool-cards">
+          {tools.map((tool) => (
+            <article key={tool.name} className="tool-card">
+              <div className="tool-card-header">
+                <h3 className="tool-card-name">{tool.name}</h3>
+                <span className="tool-links">
+                  <a
+                    href={tool.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tool-link"
+                    aria-label={`${tool.name} on GitHub`}
+                  >
+                    <GitHubIcon />
+                  </a>
+                  {tool.website && (
+                    <a
+                      href={tool.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tool-link"
+                      aria-label={`${tool.name} website`}
+                    >
+                      <ExternalLinkIcon />
+                    </a>
+                  )}
+                </span>
+              </div>
+              {tool.description && (
+                <p className="tool-card-description">{tool.description}</p>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="section">
         <h2 className="section-title">Elsewhere on the internet</h2>
