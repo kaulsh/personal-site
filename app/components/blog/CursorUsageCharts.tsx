@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
-import Chart from "chart.js/auto";
+
+type ChartJS = typeof import("chart.js/auto").default;
+type ChartInstance = InstanceType<ChartJS>;
 
 const chartCss = `
   .cursor-usage-charts {
@@ -101,12 +103,13 @@ const baseOpts = {
 };
 
 function makeChart(
+  Chart: ChartJS,
   canvas: HTMLCanvasElement,
   labels: string[],
   data: number[],
   colors: string[],
   maxY: number,
-): Chart {
+): ChartInstance {
   const ctx = canvas.getContext("2d");
   if (!ctx) {
     throw new Error("Canvas 2D context unavailable");
@@ -168,25 +171,40 @@ export function CursorUsageCharts() {
     const canvas2 = c2.current;
     if (!canvas1 || !canvas2) return;
 
-    const charts: Chart[] = [
-      makeChart(
-        canvas1,
-        ["Oct 2025", "Mar 2026"],
-        [2509, 493],
-        [oct, mar],
-        2800,
-      ),
-      makeChart(canvas2, ["Oct 2025", "Mar 2026"], [79, 257], [oct, mar], 290),
-    ];
+    let cancelled = false;
+    const charts: ChartInstance[] = [];
+
+    void import("chart.js/auto").then(({ default: Chart }) => {
+      if (cancelled) return;
+      charts.push(
+        makeChart(
+          Chart,
+          canvas1,
+          ["Oct 2025", "Mar 2026"],
+          [2509, 493],
+          [oct, mar],
+          2800,
+        ),
+        makeChart(
+          Chart,
+          canvas2,
+          ["Oct 2025", "Mar 2026"],
+          [79, 257],
+          [oct, mar],
+          290,
+        ),
+      );
+    });
 
     return () => {
+      cancelled = true;
       charts.forEach((ch) => ch.destroy());
     };
   }, []);
 
   return (
     <div className="cursor-usage-charts">
-      <style>{chartCss}</style>
+      <style dangerouslySetInnerHTML={{ __html: chartCss }} />
       <div className="chart-wrap">
         <div className="chart-title">Cursor usage — month totals</div>
         <div className="chart-headline">Oct 2025 vs Mar 2026</div>

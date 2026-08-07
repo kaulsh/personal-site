@@ -253,7 +253,7 @@ export function FileViewer({ src, label, filename }: FileViewerProps) {
 
   return (
     <>
-      <style>{css}</style>
+      <style dangerouslySetInnerHTML={{ __html: css }} />
       <div className="skill-accordion">
         <div className="skill-accordion-bar">
           <div className="skill-accordion-bar-left">

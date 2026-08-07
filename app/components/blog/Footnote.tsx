@@ -283,7 +283,7 @@ export function FootnoteList({ children }: FootnoteListProps) {
 
   return (
     <>
-      <style>{css}</style>
+      <style dangerouslySetInnerHTML={{ __html: css }} />
       {entries.length > 0 && (
         <ol className="fn-list" aria-label="Footnotes">
           {entries.map(({ id, n, content }) => (

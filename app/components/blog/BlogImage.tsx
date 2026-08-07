@@ -163,7 +163,7 @@ export function BlogImage({ src, alt, caption }: BlogImageProps) {
 
   return (
     <>
-      <style>{css}</style>
+      <style dangerouslySetInnerHTML={{ __html: css }} />
       <button
         className="blog-image-trigger"
         onClick={() => setOpen(true)}

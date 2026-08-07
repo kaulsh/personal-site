@@ -4,4 +4,4 @@ hosts = ["shashank.gg", "www.shashank.gg"]
 
 [build]
 command = "pnpm build"
-build_location = "./dist"
+build_location = "./build/client"

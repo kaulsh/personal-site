@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Link } from "react-router";
+import type { Route } from "./+types/home";
 import { ExternalLinkIcon, GitHubIcon } from "../components/Icons";
 import { getAllPosts } from "../lib/posts";
 import { tools } from "../lib/tools";
+
+const SITE_URL = "https://www.shashank.gg";
 
 const LINKS = [
   {
@@ -35,30 +37,42 @@ function formatDate(date: string | Date) {
   });
 }
 
-export default function Home() {
-  const posts = getAllPosts();
+export function meta(): Route.MetaDescriptors {
+  return [
+    { title: "Shashank Kaul" },
+    { name: "description", content: "Personal site of Shashank Kaul" },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: SITE_URL },
+    { property: "og:title", content: "Shashank Kaul" },
+    {
+      property: "og:description",
+      content: "Personal site of Shashank Kaul",
+    },
+    { name: "twitter:card", content: "summary" },
+    { name: "twitter:site", content: "@kaulsh" },
+    { name: "twitter:title", content: "Shashank Kaul" },
+    {
+      name: "twitter:description",
+      content: "Personal site of Shashank Kaul",
+    },
+    { tagName: "link", rel: "canonical", href: SITE_URL },
+  ];
+}
+
+export async function loader() {
+  return {
+    posts: getAllPosts().map((post) => ({
+      slug: post.slug,
+      frontmatter: post.frontmatter,
+    })),
+  };
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const { posts } = loaderData;
 
   return (
     <div className="page">
-      <Helmet>
-        <title>Shashank Kaul</title>
-        <meta name="description" content="Personal site of Shashank Kaul" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.shashank.gg" />
-        <meta property="og:title" content="Shashank Kaul" />
-        <meta
-          property="og:description"
-          content="Personal site of Shashank Kaul"
-        />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@kaulsh" />
-        <meta name="twitter:title" content="Shashank Kaul" />
-        <meta
-          name="twitter:description"
-          content="Personal site of Shashank Kaul"
-        />
-        <link rel="canonical" href="https://www.shashank.gg" />
-      </Helmet>
       <header className="site-header">
         <h1 className="site-name">Shashank Kaul</h1>
         <p className="site-handle">@kaulsh</p>

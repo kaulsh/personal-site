@@ -1,10 +1,18 @@
 {
+  "include": [
+    "vite.config.ts",
+    "react-router.config.ts"
+  ],
   "compilerOptions": {
     "composite": true,
-    "skipLibCheck": true,
+    "strict": true,
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["vite.config.ts"]
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  }
 }
